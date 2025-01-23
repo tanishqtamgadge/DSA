@@ -1,0 +1,59 @@
+size = int(input("Enter the size of the hash table: "))
+array1 = [None] * size
+
+def Insert_LinearProbing(data):
+    i = 0
+    count = 1
+    value = (data + i) % size
+
+    # Linear probing
+    while array1[value] is not None:
+        i += 1
+        value = (data + i) % size
+        count += 1
+
+    array1[value] = data
+    display_LinearProbing()
+    print("Number of comparisons:", count)
+
+
+def display_LinearProbing():
+    print("Linear Probing Hash Table:")
+    print(array1)
+
+
+def search1(data):
+    i = 0
+    count = 0
+    value = (data + i) % size
+    while array1[value] is not None:
+        count += 1  # Increment count on each comparison
+        if array1[value] == data:
+            print("Telephone number found")
+            print("Number of comparisons in Linear Probing:", count)
+            return  # Exit once the element is found
+        i += 1
+        value = (data + i) % size
+        if i > size:  # If the entire table has been checked
+            break
+
+    print("Element not found")
+    print("Number of comparisons:", count)
+
+
+data = int(input("Enter the value to insert: "))
+Insert_LinearProbing(data)
+
+while True:
+    print("1.INSERT   2.SEARCH:")
+    choice = int(input("Enter your choice: "))
+    if choice == 1:
+        data = int(input("Enter the Telephone Number: "))
+        Insert_LinearProbing(data)
+
+    if choice == 2:
+        data = int(input("Enter the Telephone Number: "))
+        search1(data)
+        print("\n")
+
+
